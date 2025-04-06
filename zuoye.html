@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <title>Stylish CD Player with Sound</title>
+    <style>
+        body {
+            background-image: url("1.jpg");
+            background-size: cover;
+            background-position: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cd-player {
+            background-color: rgba(45, 55, 72, 0.8);
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            width: 300px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cd {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #1a202c 10%, #2d3748 10%, #2d3748 20%, #1a202c 20%, #1a202c 30%, #2d3748 30%, #2d3748 40%, #1a202c 40%, #1a202c 50%, #2d3748 50%, #2d3748 60%, #1a202c 60%, #1a202c 70%, #2d3748 70%, #2d3748 80%, #1a202c 80%, #1a202c 90%, #2d3748 90%);
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 2rem;
+            animation: spin 5s linear infinite;
+            animation-play-state: paused;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn {
+            background-color: #4a5568;
+            color: #edf2f7;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background-color: #718096;
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center h-screen">
+    <div class="cd-player">
+        <div class="cd" id="cd"></div>
+        <button id="playPauseBtn" class="btn" onclick="togglePlayPause()">
+            <i class="fa-solid fa-play"></i> 播放
+        </button>
+    </div>
+    <!-- 这里需要替换为你实际的音频文件路径 -->
+    <audio id="audio" src="muriel.mp3"></audio>
+
+    <script>
+        const cd = document.getElementById('cd');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const audio = document.getElementById('audio');
+        let isPlaying = false;
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                cd.style.animationPlayState = 'paused';
+                playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i> 播放';
+                audio.pause();
+            } else {
+                cd.style.animationPlayState = 'running';
+                playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i> 暂停';
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+
+</html>
+    
